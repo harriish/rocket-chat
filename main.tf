@@ -3,10 +3,13 @@ provider "aws" {
 }
 
 resource "aws_instance" "my-instance" {
-  ami           = "ami-0885b1f6bd170450c"
-  instance_type = "t2.micro"
+  ami                    = "ami-013f17f36f8b1fefb"
+  instance_type          = "t2.micro"
+  key_name               = "deployer-key"
+  subnet_id              = aws_subnet.My_VPC_Subnet.id
+  vpc_security_group_ids = [aws_security_group.My_VPC_Security_Group.id]
   provisioner "remote-exec" {
-    inline = ["waiting to see if ssh is ready"]
+    inline = ["echo 'hello'"]
 
     connection {
       type = "ssh"
@@ -15,9 +18,8 @@ resource "aws_instance" "my-instance" {
     }
   }
 
-
   provisioner "local-exec" {
-     command = "ansible-playbook -i $(aws_instance-my-instance.public_ip) play.yml"
+     command = "ansible-playbook -u ubuntu -i ${aws_instance.my-instance.public_ip}, play.yml"
     }  
 }
 

@@ -1,25 +1,55 @@
----
-- hosts: all
-  become: true
+# ---
+# - hosts: all
+#   become: true
 
-  tasks:
-    - name: Install aptitude using apt
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+#   tasks:
 
-    - name: Install required system packages
-      apt: name={{ item }} state=latest update_cache=yes
-      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+#    - name: changing permission
+#      shell: chmod +x rke_linux-amd64
 
-    - name: Add Docker GPG apt Key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
+# ---
+# - hosts: all
+#   become: true
 
-    - name: Add Docker Repository
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu bionic stable
-        state: present
+#   roles:
+#   - role: "nickjj.docker"
+#     tags: ["docker"]
 
-    - name: Update apt and install docker-ce
-      apt: update_cache=yes name=docker-ce state=latest
+#     # - name: Install required system packages
+#     #   apt: name={{ item }} state=latest 
+#     #   loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
 
+#     # - name: Add Docker GPG apt Key
+#     #   apt_key:
+#     #     url: https://download.docker.com/linux/ubuntu/gpg
+#     #     state: present
+
+#     # - name: Add Docker Repository
+#     #   apt_repository:
+#     #     repo: deb https://download.docker.com/linux/ubuntu bionic stable
+#     #     state: present
+
+#     # - name: Set the stable docker repository
+#     #   apt_repository: 
+#     #     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} edge"
+
+
+#     # - name: Update apt and install docker-ce
+#     #   apt: name=docker-ce state=latest
+
+
+
+
+#     # - name: Download docker-compose {{ docker_compose_version }}
+#     #   get_url:
+#     #     url : https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
+#     #     dest: ~/docker-compose
+#     #     mode: '+x'
+
+#     # - name: Check docker-compose exists
+#     #   stat: path=~/docker-compose
+#     #   register: docker_compose
+
+#     # - name: Move docker-compose to /usr/local/bin/docker-compose
+#     #   command: mv ~/docker-compose /usr/local/bin/docker-compose
+#     #   when: docker_compose.stat.exists
