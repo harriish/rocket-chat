@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Docker
-sudo yum install -y docker docker-compose git
+sudo apt install -y docker docker-compose git
 sudo service docker start
 sleep 10
 
