@@ -1,2 +1,2 @@
-terraform destroy
 docker-compose down
+terraform destroy
