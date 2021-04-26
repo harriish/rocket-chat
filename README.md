@@ -56,6 +56,6 @@ __Remove the deployment and cleanup all resources__
 
 - Complete deployment and cleaning all resources can be done with single click by running the following bash script:
 
--  ./uninstall.sh
+  ./uninstall.sh
  
 ---
