@@ -42,7 +42,7 @@ __Run the deployment__
    
    cd rocket-chat
    
--  To run the rocket-chat application in the remote server run the following bash script:
+-  To install docker and docker-compose and run the rocket-chat application in the remote server run the following bash script:
 
    ./docker_compose_start.sh
 
